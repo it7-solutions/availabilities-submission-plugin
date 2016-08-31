@@ -2,4 +2,7 @@
 import { bootstrap }    from '@angular/platform-browser-dynamic';
 import {PluginComponent} from "./components/plugin.component";
 
-bootstrap(PluginComponent);
+setTimeout(function () {
+    bootstrap(PluginComponent);
+}, 1);
+
