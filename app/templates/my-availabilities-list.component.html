@@ -1,2 +1,10 @@
 <h4>My Availabilities List</h4>
-<my-availabilities-list-item></my-availabilities-list-item>
+<table width="100%">
+    <tr>
+        <th align="left">Date</th>
+        <th align="left">Time</th>
+        <th align="left">Status</th>
+        <th align="left"></th>
+    </tr>
+    <my-availabilities-list-item style="display: table-row;" *ngFor="let availability of availabilities" [availability]="availability"></my-availabilities-list-item>
+</table>
