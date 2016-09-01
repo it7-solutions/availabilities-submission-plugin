@@ -1,9 +1,10 @@
 export interface Availability {
     id: number;
     date: string;
-    time: string;
+    start_time: string;
+    end_time: string;
     status: string;
-    description: string;
+    session_name: string;
     isDeletable: boolean;
 
     _expanded?: boolean;

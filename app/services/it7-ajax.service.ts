@@ -63,33 +63,37 @@ export class It7AjaxService {
                 {
                     'id': 1,
                     'date': '01.02.2016',
-                    'time': 'Morning',
+                    'start_time': '10:00',
+                    'end_time': '12:00',
                     'status': 'Available',
-                    'description': 'some comment',
+                    'session_name': 'Session Name 1',
                     'isDeletable': true
                 },
                 {
                     'id': 2,
                     'date': '02.02.2016',
-                    'time': 'Evening',
+                    'start_time': '12:00',
+                    'end_time': '14:00',
                     'status': 'Confirmed',
-                    'description': '',
+                    'session_name': 'Session Name 2',
                     'isDeletable': false
                 },
                 {
                     'id': 3,
                     'date': '03.02.2016',
-                    'time': 'Dinner',
+                    'start_time': '17:00',
+                    'end_time': '18:00',
                     'status': 'Available',
-                    'description': '',
+                    'session_name': 'Session Name 3',
                     'isDeletable': true
                 },
                 {
                     'id': 4,
                     'date': '04.02.2016',
-                    'time': 'Evening',
+                    'start_time': '14:00',
+                    'end_time': '15:30',
                     'status': 'Available',
-                    'description': '',
+                    'session_name': 'Session Name 4',
                     'isDeletable': true
                 }
             ]
