@@ -1,8 +1,7 @@
 import {Component} from "@angular/core";
 import {AddAvailability} from "./add-availability.component";
 import {MyAvailabilities} from "./my-availabilities.component";
-import {MyAvailabilitiesList} from "./my-availabilities-list.component";
-import {MyAvailabilitiesListItem} from "./my-availabilities-list-item.component";
+import {PluginConfig} from "../services/plugin.config";
 @Component({
     selector: 'it7-availabilities-submission-plugin',
     templateUrl: 'app/templates/plugin.component.html',
@@ -11,4 +10,8 @@ import {MyAvailabilitiesListItem} from "./my-availabilities-list-item.component"
         MyAvailabilities
     ]
 })
-export class PluginComponent {}
+export class PluginComponent {
+    constructor(private config: PluginConfig) {
+        console.log(config);
+    }
+}

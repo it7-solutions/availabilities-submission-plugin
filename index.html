@@ -13,8 +13,22 @@
         <script src="node_modules/systemjs/dist/system.src.js"></script>
         <script src="node_modules/underscore/underscore-min.js"></script>
         <script src="systemjs.config.js"></script>
+
+
         <script>
-          System.import('app').catch(function(err){ console.error(err); });
+            System.import('app')
+                .then(function (m) {
+                    var options = {
+                        getListsUrl: '/getList',
+                        saveUrl: '/createRequest',
+                        deleteUrl: '/acceptRequest',
+                        mockAJAX: true,
+                    };
+                    m.RunApplication(options);
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
         </script>
     </head>
 
