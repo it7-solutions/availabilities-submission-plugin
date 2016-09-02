@@ -4,6 +4,6 @@ import {Availability} from "../models/availabilities";
     selector: 'my-availabilities-list-item',
     templateUrl: 'app/templates/my-availabilities-list-item.component.html'
 })
-export class MyAvailabilitiesListItem {
+export class MyAvailabilitiesListItemComponent {
     @Input() availability: Availability;
 }

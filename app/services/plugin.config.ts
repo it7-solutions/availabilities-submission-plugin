@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {AddAvailability} from "../models/addAvailability";
 
 export interface PluginOptions {
     getListsUrl: string;
@@ -10,11 +11,11 @@ export interface PluginOptions {
 
 @Injectable()
 export class PluginConfig {
+    templatesBaseUrl: string;
     getListsUrl: string;
     saveUrl: string;
     deleteUrl: string;
     mockAJAX: boolean;
-    templatesBaseUrl: string;
 
     constructor(options:PluginOptions) {
         this.getListsUrl = options.getListsUrl;

@@ -3,4 +3,4 @@ import {Component} from "@angular/core";
     selector: 'add-availability',
     templateUrl: 'app/templates/add-availability.component.html'
 })
-export class AddAvailability {}
+export class AddAvailabilityComponent {}

@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {AddAvailability} from "./add-availability.component";
+import {AddAvailabilityComponent} from "./add-availability.component";
 import {MyAvailabilities} from "./my-availabilities.component";
 import {PluginConfig} from "../services/plugin.config";
 import {DataManagerService} from "../services/data-manager.service";
@@ -10,7 +10,7 @@ import {AvailabilitiesService} from "../services/availabilities.service";
     selector: 'it7-availabilities-submission-plugin',
     templateUrl: 'app/templates/plugin.component.html',
     directives: [
-        AddAvailability,
+        AddAvailabilityComponent,
         MyAvailabilities
     ],
     providers: [
