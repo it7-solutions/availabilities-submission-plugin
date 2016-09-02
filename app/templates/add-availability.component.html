@@ -30,8 +30,7 @@
         </td>
         <td class="inputTd">
             <select>
-                <option>1</option>
-                <option>2</option>
+                <option *ngFor="let sessionType of sessionTypes.values" value="{{sessionType.key}}">{{sessionType.label}}</option>
             </select>
         </td>
     </tr>
@@ -57,8 +56,7 @@
         </td>
         <td class="inputTd">
             <select>
-                <option>1</option>
-                <option>2</option>
+                <option *ngFor="let language of language.values" value="{{language.key}}">{{language.label}}</option>
             </select>
         </td>
     </tr>
@@ -68,8 +66,7 @@
         </td>
         <td class="inputTd">
             <select>
-                <option>1</option>
-                <option>2</option>
+                <option *ngFor="let canton of canton.values" value="{{canton.key}}">{{canton.label}}</option>
             </select>
         </td>
     </tr>

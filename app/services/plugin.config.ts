@@ -1,12 +1,17 @@
 import {Injectable} from "@angular/core";
-import {AddAvailability} from "../models/addAvailability";
+import {AddAvailability, Select} from "../models/Select";
 
 export interface PluginOptions {
+    templatesBaseUrl?: string;
     getListsUrl: string;
     saveUrl: string;
     deleteUrl: string;
     mockAJAX?: boolean;
-    templatesBaseUrl?: string;
+    minDate: string;
+    maxDate: string;
+    sessionTypes: Select[];
+    language: Select[];
+    canton: Select[];
 }
 
 @Injectable()
@@ -16,12 +21,22 @@ export class PluginConfig {
     saveUrl: string;
     deleteUrl: string;
     mockAJAX: boolean;
+    minDate: string;
+    maxDate: string;
+    sessionTypes: Select[];
+    language: Select[];
+    canton: Select[];
 
     constructor(options:PluginOptions) {
+        this.templatesBaseUrl = options.templatesBaseUrl;
         this.getListsUrl = options.getListsUrl;
         this.saveUrl = options.saveUrl;
         this.deleteUrl = options.deleteUrl;
         this.mockAJAX = options.mockAJAX;
-        this.templatesBaseUrl = options.templatesBaseUrl;
+        this.minDate = options.minDate;
+        this.maxDate = options.maxDate;
+        this.sessionTypes = options.sessionTypes;
+        this.language = options.language;
+        this.canton = options.canton;
     }
 }
