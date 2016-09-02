@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component} from "@angular/core";
 import {Select} from "../models/Select";
 import {PluginConfig} from "../services/plugin.config";
 @Component({
