@@ -1,5 +1,4 @@
 export interface Select {
-    label: string;
     values: SelectValue[];
 }
 

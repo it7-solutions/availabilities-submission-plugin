@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {AddAvailability, Select} from "../models/Select";
+import {Select} from "../models/Select";
 
 export interface PluginOptions {
     templatesBaseUrl?: string;
