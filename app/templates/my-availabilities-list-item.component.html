@@ -3,4 +3,13 @@
 <td>{{availability.end_time}}</td>
 <td>{{availability.status}}</td>
 <td>{{availability.session_name}}</td>
-<td></td>
+<td>
+    <div *ngIf="availability.isDeletable" class="isDeletable">delete</div>
+</td>
+<style>
+    .isDeletable {
+        width: 10px;
+        height: 10px;
+        background: red;
+    }
+</style>
