@@ -6,14 +6,13 @@ import {PluginConfig} from './plugin.config';
 import {It7ErrorService} from "./it7-error.service";
 import {It7AjaxService} from './it7-ajax.service'
 import {AvailabilitiesService} from "./availabilities.service";
-import {Availability} from "../models/availabilities";
 
 @Injectable()
 export class DataManagerService {
     constructor(
         private config: PluginConfig,
         private err: It7ErrorService,
-        private it7Ajax:It7AjaxService,
+        private it7Ajax: It7AjaxService,
         private availabilities: AvailabilitiesService
     ){}
 
@@ -30,5 +29,11 @@ export class DataManagerService {
 
     private syncData(data: any){
         this.availabilities.setAvailabilities(data.availabilities);
+    }
+
+    saveRequest(newAvailability: Object){
+        return this.it7Ajax
+            .post(this.config.saveUrl, {newAvailability: newAvailability})
+            .then(data => this.syncData(data));
     }
 }

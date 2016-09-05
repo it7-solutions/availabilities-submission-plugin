@@ -5,7 +5,7 @@
             <label>Date</label>
         </td>
         <td class="inputTd">
-            <input type="text">
+            <input type="text" [(ngModel)]="info.date">
         </td>
     </tr>
     <tr>
@@ -13,7 +13,7 @@
             <label>Start Time</label>
         </td>
         <td class="inputTd">
-            <input type="text">
+            <input type="text" [(ngModel)]="info.startTime">
         </td>
     </tr>
     <tr>
@@ -21,7 +21,7 @@
             <label>End Time</label>
         </td>
         <td class="inputTd">
-            <input type="text">
+            <input type="text" [(ngModel)]="info.endTime">
         </td>
     </tr>
     <tr>
@@ -29,7 +29,7 @@
             <label>Session Type</label>
         </td>
         <td class="inputTd">
-            <select>
+            <select [(ngModel)]="info.sessionType">
                 <option *ngFor="let sessionType of sessionTypes.values" value="{{sessionType.key}}">{{sessionType.label}}</option>
             </select>
         </td>
@@ -39,7 +39,7 @@
             <label>Session Name</label>
         </td>
         <td class="inputTd">
-            <input type="text">
+            <input type="text" [(ngModel)]="info.sessionName">
         </td>
     </tr>
     <tr>
@@ -47,7 +47,7 @@
             <label>Participants Number</label>
         </td>
         <td class="inputTd">
-            <input type="number">
+            <input type="number" [(ngModel)]="info.participantsNumber">
         </td>
     </tr>
     <tr>
@@ -55,7 +55,7 @@
             <label>Language</label>
         </td>
         <td class="inputTd">
-            <select>
+            <select [(ngModel)]="info.language">
                 <option *ngFor="let language of language.values" value="{{language.key}}">{{language.label}}</option>
             </select>
         </td>
@@ -65,7 +65,7 @@
             <label>Canton</label>
         </td>
         <td class="inputTd">
-            <select>
+            <select [(ngModel)]="info.canton">
                 <option *ngFor="let canton of canton.values" value="{{canton.key}}">{{canton.label}}</option>
             </select>
         </td>
@@ -75,7 +75,7 @@
             <label>Room (location)</label>
         </td>
         <td class="inputTd">
-            <input type="text">
+            <input type="text" [(ngModel)]="info.room">
         </td>
     </tr>
     <tr>
@@ -83,7 +83,7 @@
             <label>Bio</label>
         </td>
         <td class="inputTd">
-            <textarea></textarea>
+            <textarea [(ngModel)]="info.bio"></textarea>
         </td>
     </tr>
     <tr>
