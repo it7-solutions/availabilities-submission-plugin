@@ -29,7 +29,7 @@
             <label>Session Type</label>
         </td>
         <td class="inputTd">
-            <select [(ngModel)]="info.session_type">
+            <select [(ngModel)]="info.type_id">
                 <option *ngFor="let sessionType of sessionTypes.values" value="{{sessionType.key}}">{{sessionType.label}}</option>
             </select>
         </td>

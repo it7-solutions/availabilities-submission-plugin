@@ -25,7 +25,7 @@ export class AddAvailabilityComponent {
         date: '',
         stime: '',
         etime: '',
-        session_type: '',
+        type_id: '',
         session_name: '',
         participants_number: null,
         language: '',
