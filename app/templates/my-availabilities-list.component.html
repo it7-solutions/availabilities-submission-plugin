@@ -1,12 +1,14 @@
 <h4>My Availabilities List</h4>
 <table width="100%">
-    <tr>
-        <th align="left">Date</th>
-        <th align="left">Start Time</th>
-        <th align="left">End Time</th>
-        <th align="left">Status</th>
-        <th align="left">Session Name</th>
-        <th align="left"></th>
-    </tr>
-    <my-availabilities-list-item style="display: table-row;" *ngFor="let availability of list" [availability]="availability"></my-availabilities-list-item>
+    <thead>
+        <tr>
+            <th align="left">Date</th>
+            <th align="left">Start Time</th>
+            <th align="left">End Time</th>
+            <th align="left">Status</th>
+            <th align="left">Session Name</th>
+            <th align="left"></th>
+        </tr>
+    </thead>
+    <my-availabilities-list-item style="display: table-row-group;" *ngFor="let availability of list" [availability]="availability"></my-availabilities-list-item>
 </table>

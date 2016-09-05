@@ -16,14 +16,24 @@ export class AvailabilitiesService {
         this.onUpdate = this._onUpdate.asObservable();
     }
 
-    setAvailabilities(availabilities: Availability[]){
-        this.availabilities = availabilities;
+    setAvailabilities(availabilities: Availability[]) {
+        this.availabilities = this.syncExpanded(availabilities);
         this._onUpdate.next(this.availabilities);
 
         console.log(availabilities);
     }
 
-    getAvailabilities(): Availability[]{
+    getAvailabilities(): Availability[] {
         return this.availabilities;
+    }
+
+    private syncExpanded(availabilities: Availability[]): Availability[] {
+        _.each(availabilities, (availability: Availability) => {
+            let found: Availability[] = _.where(this.availabilities, {id: availability.id});
+            if (found.length) {
+                availability._expanded = found[0]._expanded;
+            }
+        });
+        return availabilities;
     }
 }

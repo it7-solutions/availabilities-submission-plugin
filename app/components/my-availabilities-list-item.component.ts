@@ -1,7 +1,6 @@
 import {Component, Input} from "@angular/core";
 import {Availability} from "../models/availabilities";
 import {DataManagerService} from "../services/data-manager.service";
-import {AddAvailability} from "../models/addAvailability";
 @Component({
     selector: 'my-availabilities-list-item',
     templateUrl: 'app/templates/my-availabilities-list-item.component.html'
@@ -12,8 +11,15 @@ export class MyAvailabilitiesListItemComponent {
         private _dataManager: DataManagerService
     ) {}
 
-    deleteAvailability() {
+    deleteAvailability(event:any) {
+        event.stopPropagation();
         console.log('delete');
         this._dataManager.deleteRequest(this.availability.id);
     }
+
+    expandCollapseClick(){
+        this.availability._expanded = !this.availability._expanded;
+    }
+
+    isCollapsed: boolean = false;
 }
