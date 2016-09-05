@@ -32,6 +32,9 @@ export class DataManagerService {
     }
 
     saveRequest(newAvailability: Object){
+
+        newAvailability = JSON.stringify(newAvailability);
+
         return this.it7Ajax
             .post(this.config.saveUrl, {newAvailability: newAvailability})
             .then(data => this.syncData(data));
