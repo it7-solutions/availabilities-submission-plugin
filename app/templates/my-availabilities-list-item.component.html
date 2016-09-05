@@ -4,7 +4,7 @@
 <td>{{availability.status}}</td>
 <td>{{availability.session_name}}</td>
 <td>
-    <div *ngIf="availability.isDeletable" class="isDeletable"></div>
+    <div *ngIf="availability.isDeletable" class="isDeletable" (click)="deleteAvailability()"></div>
 </td>
 <style>
     .isDeletable {

@@ -27,13 +27,14 @@ export class It7AjaxService {
         let options = new RequestOptions({ headers: headers });
 
         if(this.config.mockAJAX){return Promise.resolve(this.getMockData(url));}
-
+        let here = this;
         return this.http
             .post(url, this.urlEncode(data), options)
             .toPromise()
             .then(res => this.checkResponse(res))
-            .catch(this.handleError);
-
+            .catch(function (error) {
+                console.log(arguments); here.handleError('Request error: ' + error.message);
+            });
     }
 
     private urlEncode(obj: any): string {

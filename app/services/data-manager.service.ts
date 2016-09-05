@@ -39,4 +39,10 @@ export class DataManagerService {
             .post(this.config.saveUrl, {newAvailability: newAvailability})
             .then(data => this.syncData(data));
     }
+
+    deleteRequest(id: number){
+        return this.it7Ajax
+            .post(this.config.deleteUrl, {id: id})
+            .then(data => this.syncData(data));
+    }
 }

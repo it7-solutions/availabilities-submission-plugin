@@ -13,7 +13,7 @@
             <label>Start Time</label>
         </td>
         <td class="inputTd">
-            <input type="text" [(ngModel)]="info.startTime">
+            <input type="text" [(ngModel)]="info.stime">
         </td>
     </tr>
     <tr>
@@ -21,7 +21,7 @@
             <label>End Time</label>
         </td>
         <td class="inputTd">
-            <input type="text" [(ngModel)]="info.endTime">
+            <input type="text" [(ngModel)]="info.etime">
         </td>
     </tr>
     <tr>
@@ -29,7 +29,7 @@
             <label>Session Type</label>
         </td>
         <td class="inputTd">
-            <select [(ngModel)]="info.sessionType">
+            <select [(ngModel)]="info.session_type">
                 <option *ngFor="let sessionType of sessionTypes.values" value="{{sessionType.key}}">{{sessionType.label}}</option>
             </select>
         </td>
@@ -39,7 +39,7 @@
             <label>Session Name</label>
         </td>
         <td class="inputTd">
-            <input type="text" [(ngModel)]="info.sessionName">
+            <input type="text" [(ngModel)]="info.session_name">
         </td>
     </tr>
     <tr>
@@ -47,7 +47,7 @@
             <label>Participants Number</label>
         </td>
         <td class="inputTd">
-            <input type="number" [(ngModel)]="info.participantsNumber">
+            <input type="number" [(ngModel)]="info.participants_number">
         </td>
     </tr>
     <tr>

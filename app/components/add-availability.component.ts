@@ -23,11 +23,11 @@ export class AddAvailabilityComponent {
 
     info: AddAvailability = {
         date: '',
-        startTime: '',
-        endTime: '',
-        sessionType: '',
-        sessionName: '',
-        participantsNumber: null,
+        stime: '',
+        etime: '',
+        session_type: '',
+        session_name: '',
+        participants_number: null,
         language: '',
         canton: '',
         room: '',
