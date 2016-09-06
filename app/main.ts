@@ -5,6 +5,8 @@ import {PluginOptions, PluginConfig} from "./services/plugin.config";
 import {HTTP_PROVIDERS} from "@angular/http";
 import {ViewResolver} from "@angular/compiler";
 import {ViewResolverService} from "./services/view-resolver.service";
+import { PLATFORM_PIPES } from '@angular/core';
+import { TranslationPipe }    from './pipes/translation.pipe';
 
 // setTimeout(function () {
 //     bootstrap(PluginComponent);
@@ -28,6 +30,7 @@ export function RunApplication(options: PluginOptions) {
         { provide: Window, useValue: window },
         { provide: PluginConfig, useValue: menuConfig },
         { provide: ViewResolver, useClass: ViewResolverService},
+        [{provide: PLATFORM_PIPES, useValue: [TranslationPipe], multi:true}]
     ]);
 }
 

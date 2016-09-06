@@ -6,6 +6,7 @@ import {DataManagerService} from "../services/data-manager.service";
 import {It7ErrorService} from "../services/it7-error.service";
 import {It7AjaxService} from "../services/it7-ajax.service";
 import {AvailabilitiesService} from "../services/availabilities.service";
+import {TranslationsService} from "../services/translations.service";
 @Component({
     selector: 'it7-availabilities-submission-plugin',
     templateUrl: 'app/templates/plugin.component.html',
@@ -17,7 +18,8 @@ import {AvailabilitiesService} from "../services/availabilities.service";
         DataManagerService,
         It7ErrorService,
         It7AjaxService,
-        AvailabilitiesService
+        AvailabilitiesService,
+        TranslationsService
     ]
 })
 export class PluginComponent implements OnInit{

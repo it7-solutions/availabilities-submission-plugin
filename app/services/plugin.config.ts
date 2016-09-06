@@ -12,6 +12,7 @@ export interface PluginOptions {
     sessionTypes: Select[];
     language: Select[];
     state: Select[];
+    onTranslate?: (code:string, text: string) => any;
 }
 
 @Injectable()
@@ -26,6 +27,8 @@ export class PluginConfig {
     sessionTypes: Select[];
     language: Select[];
     state: Select[];
+    onTranslate: (code:string, text: string) => any;
+    translations: any[];
 
     constructor(options:PluginOptions) {
         this.templatesBaseUrl = options.templatesBaseUrl;
@@ -38,5 +41,6 @@ export class PluginConfig {
         this.sessionTypes = options.sessionTypes;
         this.language = options.language;
         this.state = options.state;
+        this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
     }
 }

@@ -3,9 +3,11 @@ import {Select} from "../models/Select";
 import {PluginConfig} from "../services/plugin.config";
 import {AddAvailability} from "../models/addAvailability";
 import {DataManagerService} from "../services/data-manager.service";
+import {TranslationPipe} from "../pipes/translation.pipe";
 @Component({
     selector: 'add-availability',
-    templateUrl: 'app/templates/add-availability.component.html'
+    templateUrl: 'app/templates/add-availability.component.html',
+    pipes: [TranslationPipe]
 })
 export class AddAvailabilityComponent {
     @Input() request: AddAvailability;
