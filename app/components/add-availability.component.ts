@@ -11,14 +11,14 @@ export class AddAvailabilityComponent {
     @Input() request: AddAvailability;
     sessionTypes: Select[];
     language: Select[];
-    canton: Select[];
+    state: Select[];
     constructor(
         private config: PluginConfig,
         private _dataManager: DataManagerService
     ) {
         this.sessionTypes = config.sessionTypes;
         this.language = config.language;
-        this.canton = config.canton;
+        this.state = config.state;
     }
 
     info: AddAvailability = {
@@ -29,8 +29,8 @@ export class AddAvailabilityComponent {
         session_name: '',
         participants_number: null,
         language: '',
-        canton: '',
-        room: '',
+        state: '',
+        location: '',
         bio: ''
     };
 

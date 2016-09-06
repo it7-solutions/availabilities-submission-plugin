@@ -65,8 +65,8 @@
             <label>Canton</label>
         </td>
         <td class="inputTd">
-            <select [(ngModel)]="info.canton">
-                <option *ngFor="let canton of canton.values" value="{{canton.key}}">{{canton.label}}</option>
+            <select [(ngModel)]="info.state">
+                <option *ngFor="let state of state.values" value="{{state.key}}">{{state.label}}</option>
             </select>
         </td>
     </tr>
@@ -75,7 +75,7 @@
             <label>Room (location)</label>
         </td>
         <td class="inputTd">
-            <input type="text" [(ngModel)]="info.room">
+            <input type="text" [(ngModel)]="info.location">
         </td>
     </tr>
     <tr>

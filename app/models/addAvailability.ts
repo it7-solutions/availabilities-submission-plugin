@@ -6,7 +6,7 @@ export interface AddAvailability {
     session_name: string;
     participants_number: number;
     language: string;
-    canton: string;
-    room: string;
+    state: string;
+    location: string;
     bio: string;
 }

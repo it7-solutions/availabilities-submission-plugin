@@ -11,7 +11,7 @@ export interface PluginOptions {
     maxDate: string;
     sessionTypes: Select[];
     language: Select[];
-    canton: Select[];
+    state: Select[];
 }
 
 @Injectable()
@@ -25,7 +25,7 @@ export class PluginConfig {
     maxDate: string;
     sessionTypes: Select[];
     language: Select[];
-    canton: Select[];
+    state: Select[];
 
     constructor(options:PluginOptions) {
         this.templatesBaseUrl = options.templatesBaseUrl;
@@ -37,6 +37,6 @@ export class PluginConfig {
         this.maxDate = options.maxDate;
         this.sessionTypes = options.sessionTypes;
         this.language = options.language;
-        this.canton = options.canton;
+        this.state = options.state;
     }
 }
