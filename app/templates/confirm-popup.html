@@ -1,0 +1,27 @@
+<style>
+  .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #ffffff;
+    opacity: 0.5;
+  }
+  .popup {
+    position: fixed;
+    width: 800px;
+    height: 450px;
+    left: 0;
+    top: 0;
+    background-color: #f8f8f8;
+  }
+</style>
+<div class="overlay" *ngIf="popup" [style.width]="overlayWidth" [style.height]="overlayHeight"></div>
+<div class="popup" *ngIf="popup" [style.left]="styleLeft" [style.top]="styleTop">
+  <div>Do you really want to delete this availability?</div>
+  <div>
+    <button (click)="onConfirmClick()">Confirm</button>
+    <button (click)="onCancelClick()">Cancel</button>
+  </div>
+</div>
