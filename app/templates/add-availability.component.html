@@ -65,9 +65,7 @@
             <label>Canton</label>
         </td>
         <td class="inputTd">
-            <select [(ngModel)]="info.state">
-                <option *ngFor="let state of state.values" value="{{state.key}}">{{state.label}}</option>
-            </select>
+            <input type="text" [(ngModel)]="info.state">
         </td>
     </tr>
     <tr>
@@ -76,14 +74,6 @@
         </td>
         <td class="inputTd">
             <input type="text" [(ngModel)]="info.location">
-        </td>
-    </tr>
-    <tr>
-        <td class="labelTd">
-            <label>Bio</label>
-        </td>
-        <td class="inputTd">
-            <textarea [(ngModel)]="info.bio"></textarea>
         </td>
     </tr>
     <tr>
@@ -101,11 +91,7 @@
         width: 70%;
         vertical-align: top;
     }
-    .inputTd input, .inputTd textarea, .inputTd select {
+    .inputTd input, .inputTd select {
         width: 100%;
-    }
-    .inputTd textarea {
-        resize: none;
-        height: 70px;
     }
 </style>

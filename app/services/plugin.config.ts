@@ -11,7 +11,8 @@ export interface PluginOptions {
     maxDate: string;
     sessionTypes: Select[];
     language: Select[];
-    state: Select[];
+    state: string;
+    location: string;
     onTranslate?: (code:string, text: string) => any;
 }
 
@@ -26,7 +27,8 @@ export class PluginConfig {
     maxDate: string;
     sessionTypes: Select[];
     language: Select[];
-    state: Select[];
+    state: string;
+    location: string;
     onTranslate: (code:string, text: string) => any;
     translations: any[];
 
@@ -41,6 +43,7 @@ export class PluginConfig {
         this.sessionTypes = options.sessionTypes;
         this.language = options.language;
         this.state = options.state;
+        this.location = options.location;
         this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
     }
 }

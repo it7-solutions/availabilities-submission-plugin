@@ -13,7 +13,7 @@ export class AddAvailabilityComponent {
     @Input() request: AddAvailability;
     sessionTypes: Select[];
     language: Select[];
-    state: Select[];
+    state: string;
     constructor(
         private config: PluginConfig,
         private _dataManager: DataManagerService
@@ -33,12 +33,32 @@ export class AddAvailabilityComponent {
         language: '',
         state: '',
         location: '',
-        bio: ''
     };
+
+    ngOnInit() {
+        this.fillForm({
+            state: this.config.state,
+            location: this.config.location
+        });
+    }
+
+    fillForm(o: any) {
+        Object.assign(this.info, o);
+    }
 
     addAvailability() {
         console.log(this.info);
         this._dataManager.saveRequest(this.info);
-
+        this.fillForm(
+            {
+                date: '',
+                stime: '',
+                etime: '',
+                type_id: '',
+                session_name: '',
+                participants_number: null,
+                language: '',
+            }
+        );
     }
 }

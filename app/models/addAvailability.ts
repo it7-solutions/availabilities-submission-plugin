@@ -8,5 +8,4 @@ export interface AddAvailability {
     language: string;
     state: string;
     location: string;
-    bio: string;
 }
