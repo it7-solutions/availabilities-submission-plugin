@@ -7,13 +7,13 @@ export interface PluginOptions {
     saveUrl: string;
     deleteUrl: string;
     mockAJAX?: boolean;
-    minDate: string;
-    maxDate: string;
     sessionTypes: Select[];
     language: Select[];
     state: string;
     location: string;
     onTranslate?: (code:string, text: string) => any;
+    translations: any[];
+    onDate?: (date: string, callback: any) => any;
 }
 
 @Injectable()
@@ -23,14 +23,13 @@ export class PluginConfig {
     saveUrl: string;
     deleteUrl: string;
     mockAJAX: boolean;
-    minDate: string;
-    maxDate: string;
     sessionTypes: Select[];
     language: Select[];
     state: string;
     location: string;
     onTranslate: (code:string, text: string) => any;
     translations: any[];
+    onDate: (date: string, callback: any) => any;
 
     constructor(options:PluginOptions) {
         this.templatesBaseUrl = options.templatesBaseUrl;
@@ -38,12 +37,12 @@ export class PluginConfig {
         this.saveUrl = options.saveUrl;
         this.deleteUrl = options.deleteUrl;
         this.mockAJAX = options.mockAJAX;
-        this.minDate = options.minDate;
-        this.maxDate = options.maxDate;
         this.sessionTypes = options.sessionTypes;
         this.language = options.language;
         this.state = options.state;
         this.location = options.location;
         this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
+        this.translations = options.translations;
+        this.onDate = typeof options.onDate === 'function' ? options.onDate : () => {};
     }
 }

@@ -7,8 +7,8 @@ import {It7ErrorService} from "../services/it7-error.service";
 import {It7AjaxService} from "../services/it7-ajax.service";
 import {AvailabilitiesService} from "../services/availabilities.service";
 import {TranslationsService} from "../services/translations.service";
-import { PopupService } from '../services/popup.service'
-import { ConfirmPopupComponent } from './confirm-popup.component'
+import { PopupService } from '../services/popup.service';
+import { ConfirmPopupComponent } from './confirm-popup.component';
 @Component({
     selector: 'it7-availabilities-submission-plugin',
     templateUrl: 'app/templates/plugin.component.html',

@@ -5,7 +5,7 @@
             <label>Date</label>
         </td>
         <td class="inputTd">
-            <input type="text" [(ngModel)]="info.date">
+            <input type="text" id="datepicker" [(ngModel)]="info.date" (click)="onShowDate()" readonly="true">
         </td>
     </tr>
     <tr>

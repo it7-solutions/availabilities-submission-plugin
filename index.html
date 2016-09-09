@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
 
+        <link rel="stylesheet" href="vendor/jquery-ui.css">
+
         <!-- Polyfill(s) for older browsers -->
         <script src="node_modules/core-js/client/shim.min.js"></script>
 
@@ -13,6 +15,9 @@
         <script src="node_modules/systemjs/dist/system.src.js"></script>
         <script src="node_modules/underscore/underscore-min.js"></script>
         <script src="systemjs.config.js"></script>
+
+        <script src="vendor/jquery-1.12.4.js"></script>
+        <script src="vendor/jquery-ui.js"></script>
 
 
         <script>
@@ -23,8 +28,6 @@
                         saveUrl: '/saveUrl',
                         deleteUrl: '/deleteUrl',
                         mockAJAX: true,
-                        minDate: '10.12.16',
-                        maxDate: '17.12.16',
                         sessionTypes: {
                             values: [
                                 {label: 'Session Type 1', key: 'session_type_1'},
@@ -38,7 +41,16 @@
                             ]
                         },
                         state: 'default State',
-                        location: 'default Location'
+                        location: 'default Location',
+                        onDate: function(date, callback){
+                            $( "#datepicker" ).datepicker({
+                                onSelect: function (date) {
+                                    callback(date);
+                                },
+                                dateFormat: 'dd.mm.yy',
+                                changeMonth: true
+                            }).datepicker( "show" );
+                        }
                     };
                     m.RunApplication(options);
                 })

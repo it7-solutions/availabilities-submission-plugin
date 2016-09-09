@@ -61,4 +61,10 @@ export class AddAvailabilityComponent {
             }
         );
     }
+
+    onShowDate() {
+        this.config.onDate(this.info.date, (date: string) => {
+            this.info.date = date;
+        });
+    }
 }
