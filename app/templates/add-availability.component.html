@@ -5,7 +5,10 @@
             <label>Date</label>
         </td>
         <td class="inputTd">
-            <input type="text" id="datepicker" [(ngModel)]="info.date" (click)="onShowDate()" readonly="true">
+            <div class="message-error" *ngIf="!validateFields.date.isValid">{{validateFields.date.messageText}}</div>
+            <input type="text" id="datepicker"
+                   [(ngModel)]="info.date" (click)="onShowDate()" readonly="true"
+                   [ngClass]="{'error': !validateFields.date.isValid, valid: validateFields.date.isValid}">
         </td>
     </tr>
     <tr>
@@ -13,7 +16,10 @@
             <label>Start Time</label>
         </td>
         <td class="inputTd">
-            <input type="text" [(ngModel)]="info.stime">
+            <div class="message-error" *ngIf="!validateFields.stime.isValid">{{validateFields.stime.messageText}}</div>
+            <input type="text"
+                   [(ngModel)]="info.stime"
+                   [ngClass]="{'error': !validateFields.stime.isValid, valid: validateFields.stime.isValid}">
         </td>
     </tr>
     <tr>
@@ -21,7 +27,10 @@
             <label>End Time</label>
         </td>
         <td class="inputTd">
-            <input type="text" [(ngModel)]="info.etime">
+            <div class="message-error" *ngIf="!validateFields.etime.isValid">{{validateFields.etime.messageText}}</div>
+            <input type="text"
+                   [(ngModel)]="info.etime"
+                   [ngClass]="{'error': !validateFields.etime.isValid, valid: validateFields.etime.isValid}">
         </td>
     </tr>
     <tr>
@@ -29,7 +38,10 @@
             <label>Session Type</label>
         </td>
         <td class="inputTd">
-            <select [(ngModel)]="info.type_id">
+            <div class="message-error" *ngIf="!validateFields.type_id.isValid">{{validateFields.type_id.messageText}}</div>
+            <select [(ngModel)]="info.type_id"
+                    [ngClass]="{'error': !validateFields.type_id.isValid, valid: validateFields.type_id.isValid}">
+                <option value="" disabled>Please choose one</option>
                 <option *ngFor="let sessionType of sessionTypes.values" value="{{sessionType.key}}">{{sessionType.label}}</option>
             </select>
         </td>
@@ -39,7 +51,10 @@
             <label>Session Name</label>
         </td>
         <td class="inputTd">
-            <input type="text" [(ngModel)]="info.session_name">
+            <div class="message-error" *ngIf="!validateFields.session_name.isValid">{{validateFields.session_name.messageText}}</div>
+            <input type="text"
+                   [(ngModel)]="info.session_name"
+                   [ngClass]="{'error': !validateFields.session_name.isValid, valid: validateFields.session_name.isValid}">
         </td>
     </tr>
     <tr>
@@ -47,7 +62,10 @@
             <label>Participants Number</label>
         </td>
         <td class="inputTd">
-            <input type="number" [(ngModel)]="info.participants_number">
+            <div class="message-error" *ngIf="!validateFields.participants_number.isValid">{{validateFields.participants_number.messageText}}</div>
+            <input type="text"
+                   [(ngModel)]="info.participants_number"
+                   [ngClass]="{'error': !validateFields.participants_number.isValid, valid: validateFields.participants_number.isValid}">
         </td>
     </tr>
     <tr>
@@ -55,7 +73,10 @@
             <label>Language</label>
         </td>
         <td class="inputTd">
-            <select [(ngModel)]="info.language">
+            <div class="message-error" *ngIf="!validateFields.language.isValid">{{validateFields.language.messageText}}</div>
+            <select [(ngModel)]="info.language"
+                    [ngClass]="{'error': !validateFields.language.isValid, valid: validateFields.language.isValid}">
+                <option value="" disabled>Please choose one</option>
                 <option *ngFor="let language of language.values" value="{{language.key}}">{{language.label}}</option>
             </select>
         </td>
@@ -65,7 +86,10 @@
             <label>Canton</label>
         </td>
         <td class="inputTd">
-            <input type="text" [(ngModel)]="info.state">
+            <div class="message-error" *ngIf="!validateFields.state.isValid">{{validateFields.state.messageText}}</div>
+            <input type="text"
+                   [(ngModel)]="info.state"
+                   [ngClass]="{'error': !validateFields.state.isValid, valid: validateFields.state.isValid}">
         </td>
     </tr>
     <tr>
@@ -73,7 +97,10 @@
             <label>Room (location)</label>
         </td>
         <td class="inputTd">
-            <input type="text" [(ngModel)]="info.location">
+            <div class="message-error" *ngIf="!validateFields.location.isValid">{{validateFields.location.messageText}}</div>
+            <input type="text"
+                   [(ngModel)]="info.location"
+                   [ngClass]="{'error': !validateFields.location.isValid, valid: validateFields.location.isValid}">
         </td>
     </tr>
     <tr>
@@ -93,5 +120,11 @@
     }
     .inputTd input, .inputTd select {
         width: 100%;
+    }
+    .error {
+        border: 1px solid red;
+    }
+    .message-error {
+        color: red;
     }
 </style>

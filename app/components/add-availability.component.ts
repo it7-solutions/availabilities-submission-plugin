@@ -4,6 +4,7 @@ import {PluginConfig} from "../services/plugin.config";
 import {AddAvailability} from "../models/addAvailability";
 import {DataManagerService} from "../services/data-manager.service";
 import {TranslationPipe} from "../pipes/translation.pipe";
+import {ValidateField} from "../models/validate";
 @Component({
     selector: 'add-availability',
     templateUrl: 'app/templates/add-availability.component.html',
@@ -14,6 +15,7 @@ export class AddAvailabilityComponent {
     sessionTypes: Select[];
     language: Select[];
     state: string;
+    formValid: boolean = true;
     constructor(
         private config: PluginConfig,
         private _dataManager: DataManagerService
@@ -35,6 +37,119 @@ export class AddAvailabilityComponent {
         location: '',
     };
 
+    validateFields: {[key:string] : ValidateField} = {
+        date: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+        },
+        stime: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+            isTime: true
+        },
+        etime: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+            isTime: true,
+            etime_greater: true
+        },
+        type_id: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+        },
+        session_name: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+        },
+        participants_number: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+        },
+        language: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+        },
+        state: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+        },
+        location: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+        }
+    };
+
+    private setAllValid() {
+        for(var fieldName in this.validateFields) {
+            var field:ValidateField = this.validateFields[fieldName];
+            field.isValid = true;
+            field.messageText = '';
+        }
+    }
+
+    checkRequired() {
+        for(var fieldName in this.validateFields) {
+            var field:ValidateField = this.validateFields[fieldName];
+            if(field.isRequired) {
+                var value = this.info[fieldName];
+                if('' === value || value === null) {
+                    field.isValid = false;
+                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'Please Fill in the form!';
+                }
+            }
+        }
+    }
+
+    checkTime() {
+        for(var fieldName in this.validateFields) {
+            var field = this.validateFields[fieldName];
+            if(field.isTime) {
+                var value = this.info[fieldName];
+                // /^(0[1-9]|1[0-2]):([0-5][0-9])(am|pm)$/i.test(value) - American
+                if(!/^([0-1][0-9]|2[0-3]):([0-4][0-9]|5[0-9])$/i.test(value)) {
+                    field.isValid = false;
+                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'Enter in 24 hour format!';
+                }
+            }
+        }
+    }
+
+    checkEndTimeGreaterThanStart() {
+        // to be continued
+    }
+
+    checkValid() {
+        this.formValid = true;
+        for(var i in this.validateFields) {
+            if(this.validateFields[i].isValid === false) {
+                this.formValid = false;
+                console.log('found', this.formValid);
+                break;
+            }
+        }
+        return this.formValid;
+    }
+
+
+
+    onValidateFields() {
+        this.setAllValid();
+        this.checkRequired();
+        this.checkTime();
+        this.checkEndTimeGreaterThanStart();
+
+        this.checkValid();
+    }
+
     ngOnInit() {
         this.fillForm({
             state: this.config.state,
@@ -47,19 +162,27 @@ export class AddAvailabilityComponent {
     }
 
     addAvailability() {
-        console.log(this.info);
-        this._dataManager.saveRequest(this.info);
-        this.fillForm(
-            {
-                date: '',
-                stime: '',
-                etime: '',
-                type_id: '',
-                session_name: '',
-                participants_number: null,
-                language: '',
-            }
-        );
+        this.onValidateFields();
+        console.log('form', this.formValid);
+        if(this.checkValid()) {
+            console.log('saving');
+            this._dataManager.saveRequest(this.info);
+
+            this.fillForm(
+                {
+                    date: '',
+                    stime: '',
+                    etime: '',
+                    type_id: '',
+                    session_name: '',
+                    participants_number: null,
+                    language: '',
+                }
+            );
+        }
+
+
+
     }
 
     onShowDate() {
