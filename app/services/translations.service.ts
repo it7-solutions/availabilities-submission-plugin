@@ -1,3 +1,4 @@
+//Version 1.1 - changed parameters in translate method (used optional)
 import {Injectable} from "@angular/core";
 import {vsprintf} from "sprintf-js";
 
@@ -16,7 +17,7 @@ export class TranslationsService {
         window['t'] = this.codes;
     }
 
-    public translate(text: string, parameters: string[]): string {
+    public translate(text: string, parameters?: string[]): string {
         return this.getTranslation(this.buildCode(text), text, parameters);
     }
 

@@ -5,6 +5,7 @@ import {AddAvailability} from "../models/addAvailability";
 import {DataManagerService} from "../services/data-manager.service";
 import {TranslationPipe} from "../pipes/translation.pipe";
 import {ValidateField} from "../models/validate";
+import {TranslationsService} from "../services/translations.service";
 @Component({
     selector: 'add-availability',
     templateUrl: 'app/templates/add-availability.component.html',
@@ -18,7 +19,8 @@ export class AddAvailabilityComponent {
     formValid: boolean = true;
     constructor(
         private config: PluginConfig,
-        private _dataManager: DataManagerService
+        private _dataManager: DataManagerService,
+        private _translate: TranslationsService
     ) {
         this.sessionTypes = config.sessionTypes;
         this.language = config.language;
@@ -104,7 +106,7 @@ export class AddAvailabilityComponent {
                 var value = this.info[fieldName];
                 if('' === value || value === null) {
                     field.isValid = false;
-                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'Please fill in the form!';
+                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Please fill in the form!');
                 }
             }
         }
