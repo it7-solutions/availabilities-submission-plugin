@@ -3,6 +3,7 @@ export interface ValidateField {
     messageText: string,
     isRequired: boolean,
     isTime?: boolean,
+    etime_lower?: boolean,
     etime_greater?: boolean
 }
 

@@ -47,7 +47,8 @@ export class AddAvailabilityComponent {
             isValid: true,
             messageText: '',
             isRequired: true,
-            isTime: true
+            isTime: true,
+            etime_lower: true
         },
         etime: {
             isValid: true,
@@ -103,7 +104,7 @@ export class AddAvailabilityComponent {
                 var value = this.info[fieldName];
                 if('' === value || value === null) {
                     field.isValid = false;
-                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'Please Fill in the form!';
+                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'Please fill in the form!';
                 }
             }
         }
@@ -117,14 +118,28 @@ export class AddAvailabilityComponent {
                 // /^(0[1-9]|1[0-2]):([0-5][0-9])(am|pm)$/i.test(value) - American
                 if(!/^([0-1][0-9]|2[0-3]):([0-4][0-9]|5[0-9])$/i.test(value)) {
                     field.isValid = false;
-                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'Enter in 24 hour format!';
+                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'Time must be in 24-hour format!';
                 }
             }
         }
     }
 
     checkEndTimeGreaterThanStart() {
-        // to be continued
+        for(var fieldName in this.validateFields) {
+            var field = this.validateFields[fieldName];
+            if(field.isTime) {
+                if(this.info.stime > this.info.etime) {
+                    if(field.etime_lower) {
+                        field.isValid = false;
+                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'Start time must be lower that End time!';
+                    } else if(field.etime_greater) {
+                        field.isValid = false;
+                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'End time must be greater that Start time!';
+                    }
+                }
+            }
+        }
+
     }
 
     checkValid() {
@@ -132,7 +147,6 @@ export class AddAvailabilityComponent {
         for(var i in this.validateFields) {
             if(this.validateFields[i].isValid === false) {
                 this.formValid = false;
-                console.log('found', this.formValid);
                 break;
             }
         }
