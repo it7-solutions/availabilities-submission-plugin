@@ -8,4 +8,6 @@ export interface AddAvailability {
     language: string;
     state: string;
     location: string;
+    time_format: string;
+    time_format_regex: string;
 }

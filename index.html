@@ -42,6 +42,9 @@
                         },
                         state: 'default State',
                         location: 'default Location',
+                        time_format: 'eu',
+//                        time_format_regex: '^(0[1-9]|1[0-2]):([0-5][0-9])(am|pm)$', //american
+                        time_format_regex: '^([0-1][0-9]|2[0-3]):([0-4][0-9]|5[0-9])$', //eu
                         onDate: function(date, callback){
                             $( "#datepicker" ).datepicker({
                                 onSelect: function (date) {
