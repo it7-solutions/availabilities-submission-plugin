@@ -13,6 +13,7 @@ export interface PluginOptions {
     location: string;
     time_format: string;
     time_format_regex: string;
+    time_format_moment_js: string;
     onTranslate?: (code:string, text: string) => any;
     translations: any[];
     onDate?: (date: string, callback: any) => any;
@@ -31,6 +32,7 @@ export class PluginConfig {
     location: string;
     time_format: string;
     time_format_regex: string;
+    time_format_moment_js: string;
     onTranslate: (code:string, text: string) => any;
     translations: any[];
     onDate: (date: string, callback: any) => any;
@@ -47,6 +49,7 @@ export class PluginConfig {
         this.location = options.location;
         this.time_format = options.time_format;
         this.time_format_regex = options.time_format_regex;
+        this.time_format_moment_js = options.time_format_moment_js;
         this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
         this.translations = options.translations;
         this.onDate = typeof options.onDate === 'function' ? options.onDate : () => {};

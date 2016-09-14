@@ -6,6 +6,7 @@ import {DataManagerService} from "../services/data-manager.service";
 import {TranslationPipe} from "../pipes/translation.pipe";
 import {ValidateField} from "../models/validate";
 import {TranslationsService} from "../services/translations.service";
+import * as moment from 'moment';
 @Component({
     selector: 'add-availability',
     templateUrl: 'app/templates/add-availability.component.html',
@@ -37,8 +38,6 @@ export class AddAvailabilityComponent {
         language: '',
         state: '',
         location: '',
-        time_format: '',
-        time_format_regex: ''
     };
 
     validateFields: {[key:string] : ValidateField} = {
@@ -101,7 +100,7 @@ export class AddAvailabilityComponent {
         }
     }
 
-    checkRequired() {
+    private checkRequired() {
         for(var fieldName in this.validateFields) {
             var field:ValidateField = this.validateFields[fieldName];
             if(field.isRequired) {
@@ -114,49 +113,60 @@ export class AddAvailabilityComponent {
         }
     }
 
-    checkTime() {
+    private checkTime() {
         for(var fieldName in this.validateFields) {
             var field = this.validateFields[fieldName];
             if(field.isTime) {
                 var value = this.info[fieldName];
                 // /^(0[1-9]|1[0-2]):([0-5][0-9])(am|pm)$/i.test(value) - American
                 var regExp = new RegExp(this.config.time_format_regex, 'i');
-                function setTimeFieldDisabled(textMessage: any) {
-                    if(!regExp.test(value)) {
-                        field.isValid = false;
-                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + textMessage;
-                    }
-                }
                 if(this.config.time_format === 'us') {
-                    setTimeFieldDisabled(this._translate.translate('Time must be in 12-hour format!'));
+                    this.setTimeFieldDisabled(this._translate.translate('Time must be in 12-hour format!'), regExp, field, value);
                 } else if(this.config.time_format === 'eu') {
-                    setTimeFieldDisabled(this._translate.translate('Time must be in 24-hour format!'));
+                    this.setTimeFieldDisabled(this._translate.translate('Time must be in 24-hour format!'), regExp, field, value);
                 }
             }
         }
     }
 
-    checkEndTimeGreaterThanStart() {
-        // TODO: Does not work well with US Time-Format, need to fix it
+    private setTimeFieldDisabled(textMessage: any, regExp: RegExp, field: ValidateField, value: any) {
+        if(!regExp.test(value)) {
+            field.isValid = false;
+            field.messageText = (field.messageText ? field.messageText + '. ' : '') + textMessage;
+        }
+    }
 
-        for(var fieldName in this.validateFields) {
+    private checkEndTimeGreaterThanStart() {
+        var startStamp:any = this.convertDateToTimeStamp(this.info.stime);
+        var endStamp:any = this.convertDateToTimeStamp(this.info.etime);
+        for (var fieldName in this.validateFields) {
             var field = this.validateFields[fieldName];
-            if(field.isTime) {
-                if(this.info.stime > this.info.etime) {
-                    if(field.etime_lower) {
+            if (field.isTime) {
+                if (startStamp >= endStamp) {
+                    if (field.etime_lower) {
                         field.isValid = false;
                         field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Start time must be lower that End time!');
-                    } else if(field.etime_greater) {
+                    } else if (field.etime_greater) {
                         field.isValid = false;
                         field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('End time must be greater that Start time!');
                     }
                 }
             }
         }
-
     }
 
-    checkValid() {
+    private convertDateToTimeStamp(time: any) {
+        var date: string = '';
+        if(this.config.time_format === 'us') {
+            date = '09/14/2016';
+        } else if(this.config.time_format === 'eu') {
+            date = '14.09.2016';
+        }
+        var mm = moment(date + ' ' + time, this.config.time_format_moment_js);
+        return mm.valueOf();
+    };
+
+    private checkValid() {
         this.formValid = true;
         for(var i in this.validateFields) {
             if(this.validateFields[i].isValid === false) {
@@ -166,8 +176,6 @@ export class AddAvailabilityComponent {
         }
         return this.formValid;
     }
-
-
 
     onValidateFields() {
         this.setAllValid();
@@ -193,7 +201,7 @@ export class AddAvailabilityComponent {
         this.onValidateFields();
         console.log('form', this.formValid);
         if(this.checkValid()) {
-            console.log('saving');
+            console.log('saving...');
             this._dataManager.saveRequest(this.info);
 
             this.fillForm(
@@ -208,9 +216,6 @@ export class AddAvailabilityComponent {
                 }
             );
         }
-
-
-
     }
 
     onShowDate() {
