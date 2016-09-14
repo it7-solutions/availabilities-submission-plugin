@@ -122,9 +122,9 @@ export class AddAvailabilityComponent {
                 // /^(0[1-9]|1[0-2]):([0-5][0-9])(am|pm)$/i.test(value) - American
                 var regExp = new RegExp(this.config.time_format_regex, 'i');
                 if(this.config.time_format === 'us') {
-                    this.setTimeFieldDisabled(this._translate.translate('Time must be in 12-hour format!'), regExp, field, value);
+                    this.setTimeFieldDisabled(this._translate.translate('Enter time in format: HH:MM am/pm'), regExp, field, value);
                 } else if(this.config.time_format === 'eu') {
-                    this.setTimeFieldDisabled(this._translate.translate('Time must be in 24-hour format!'), regExp, field, value);
+                    this.setTimeFieldDisabled(this._translate.translate('Enter time in format: HH:MM'), regExp, field, value);
                 }
             }
         }
