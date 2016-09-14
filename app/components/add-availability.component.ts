@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, EventEmitter} from "@angular/core";
 import {Select} from "../models/Select";
 import {PluginConfig} from "../services/plugin.config";
 import {AddAvailability} from "../models/addAvailability";
@@ -74,6 +74,7 @@ export class AddAvailabilityComponent {
             isValid: true,
             messageText: '',
             isRequired: true,
+            isNumber: true,
         },
         language: {
             isValid: true,
@@ -166,6 +167,20 @@ export class AddAvailabilityComponent {
         return mm.valueOf();
     };
 
+    private isNumber() {
+        for(var fieldName in this.validateFields) {
+            var field = this.validateFields[fieldName];
+            if(field.isNumber) {
+                var value = this.info[fieldName];
+                var regExp = new RegExp('^\\+?[0-9]$|^\\+?\d+$', 'i');
+                if(!regExp.test(value)) {
+                    field.isValid = false;
+                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('The field must be a number!');
+                }
+            }
+        }
+    }
+
     private checkValid() {
         this.formValid = true;
         for(var i in this.validateFields) {
@@ -182,6 +197,7 @@ export class AddAvailabilityComponent {
         this.checkRequired();
         this.checkTime();
         this.checkEndTimeGreaterThanStart();
+        this.isNumber();
 
         this.checkValid();
     }
