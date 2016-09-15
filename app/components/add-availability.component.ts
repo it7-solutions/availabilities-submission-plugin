@@ -172,7 +172,7 @@ export class AddAvailabilityComponent {
             var field = this.validateFields[fieldName];
             if(field.isNumber) {
                 var value = this.info[fieldName];
-                var regExp = new RegExp('^\\+?[0-9]$|^\\+?\d+$', 'i');
+                var regExp = new RegExp('^[1-9][0-9]*$', 'i');
                 if(!regExp.test(value)) {
                     field.isValid = false;
                     field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('The field must be a number!');
