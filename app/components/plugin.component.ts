@@ -9,13 +9,15 @@ import {AvailabilitiesService} from "../services/availabilities.service";
 import {TranslationsService} from "../services/translations.service";
 import { PopupService } from '../services/popup.service';
 import { ConfirmPopupComponent } from './confirm-popup.component';
+import { BusyPopupComponent } from './busy-popup.component';
 @Component({
     selector: 'it7-availabilities-submission-plugin',
     templateUrl: 'app/templates/plugin.component.html',
     directives: [
         AddAvailabilityComponent,
         MyAvailabilities,
-        ConfirmPopupComponent
+        ConfirmPopupComponent,
+        BusyPopupComponent
     ],
     providers: [
         DataManagerService,

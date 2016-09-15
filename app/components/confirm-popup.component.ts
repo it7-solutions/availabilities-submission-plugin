@@ -60,12 +60,12 @@ export class ConfirmPopupComponent {
     this.styleLeft = (this.window.innerWidth - 800) / 2 + "px";
   }
 
-  private onConfirmClick() {
+  public onConfirmClick() {
     this.dataManager.deleteRequest(this.popup.request.id);
     this.popup = undefined;
   }
 
-  private onCancelClick() {
+  public onCancelClick() {
     this.popup = undefined;
   }
 }
