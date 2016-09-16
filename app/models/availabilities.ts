@@ -6,6 +6,7 @@ export interface Availability {
     status: string;
     session_name: string;
     isDeletable: boolean;
+    description: string;
 
     _expanded?: boolean;
 }

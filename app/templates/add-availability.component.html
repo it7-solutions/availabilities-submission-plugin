@@ -104,6 +104,16 @@
         </td>
     </tr>
     <tr>
+        <td>
+            <labe>Description</labe>
+        </td>
+        <td>
+            <div class="message-error"></div>
+            <input type="text"
+                   [(ngModel)]="info.description">
+        </td>
+    </tr>
+    <tr>
         <td colspan="2" align="right">
             <button type="submit" (click)="addAvailability()">add availability</button>
         </td>

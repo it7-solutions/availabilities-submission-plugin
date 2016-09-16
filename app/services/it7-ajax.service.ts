@@ -68,7 +68,8 @@ export class It7AjaxService {
                     'end_time': '12:00',
                     'status': 'Available',
                     'session_name': 'Session Name 1',
-                    'isDeletable': true
+                    'isDeletable': true,
+                    'description': 'Description 1'
                 },
                 {
                     'id': 2,
@@ -77,7 +78,8 @@ export class It7AjaxService {
                     'end_time': '14:00',
                     'status': 'Confirmed',
                     'session_name': 'Session Name 2',
-                    'isDeletable': false
+                    'isDeletable': false,
+                    'description': 'Description 2'
                 },
                 {
                     'id': 3,
@@ -86,7 +88,8 @@ export class It7AjaxService {
                     'end_time': '18:00',
                     'status': 'Available',
                     'session_name': 'Session Name 3',
-                    'isDeletable': true
+                    'isDeletable': true,
+                    'description': 'Description 3'
                 },
                 {
                     'id': 4,
@@ -95,7 +98,8 @@ export class It7AjaxService {
                     'end_time': '15:30',
                     'status': 'Available',
                     'session_name': 'Session Name 4',
-                    'isDeletable': true
+                    'isDeletable': true,
+                    'description': 'Description 4'
                 }
             ]
         };

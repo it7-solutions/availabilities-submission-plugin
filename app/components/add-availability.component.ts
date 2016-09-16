@@ -38,6 +38,7 @@ export class AddAvailabilityComponent {
         language: '',
         state: '',
         location: '',
+        description: ''
     };
 
     validateFields: {[key:string] : ValidateField} = {
@@ -87,6 +88,11 @@ export class AddAvailabilityComponent {
             isRequired: true,
         },
         location: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+        },
+        description: {
             isValid: true,
             messageText: '',
             isRequired: true,
@@ -229,6 +235,7 @@ export class AddAvailabilityComponent {
                     session_name: '',
                     participants_number: null,
                     language: '',
+                    description: ''
                 }
             );
         }
