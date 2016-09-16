@@ -1,4 +1,4 @@
-import {Component, Input, EventEmitter} from "@angular/core";
+import {Component, Input, EventEmitter, ViewChild} from "@angular/core";
 import {Select} from "../models/Select";
 import {PluginConfig} from "../services/plugin.config";
 import {AddAvailability} from "../models/addAvailability";
@@ -7,6 +7,7 @@ import {TranslationPipe} from "../pipes/translation.pipe";
 import {ValidateField} from "../models/validate";
 import {TranslationsService} from "../services/translations.service";
 import * as moment from 'moment';
+import any = jasmine.any;
 @Component({
     selector: 'add-availability',
     templateUrl: 'app/templates/add-availability.component.html',
@@ -14,6 +15,8 @@ import * as moment from 'moment';
 })
 export class AddAvailabilityComponent {
     @Input() request: AddAvailability;
+    @ViewChild('stime') startTimeInput: any;
+    @ViewChild('etime') endTimeInput: any;
     sessionTypes: Select[];
     language: Select[];
     state: string;
@@ -95,7 +98,7 @@ export class AddAvailabilityComponent {
         description: {
             isValid: true,
             messageText: '',
-            isRequired: true,
+            isRequired: false,
         }
     };
 
@@ -213,13 +216,24 @@ export class AddAvailabilityComponent {
             state: this.config.state,
             location: this.config.location
         });
+
+        // init datapicker
+        this.config.onInit((date: string) => {
+            this.info.date = date;
+        });
     }
 
     fillForm(o: any) {
         Object.assign(this.info, o);
     }
 
+    private addValuesFromInputs() {
+        this.info.stime = this.startTimeInput.nativeElement.value;
+        this.info.etime = this.endTimeInput.nativeElement.value;
+    }
+
     addAvailability() {
+        this.addValuesFromInputs();
         this.onValidateFields();
         console.log('form', this.formValid);
         if(this.checkValid()) {
@@ -239,11 +253,5 @@ export class AddAvailabilityComponent {
                 }
             );
         }
-    }
-
-    onShowDate() {
-        this.config.onDate(this.info.date, (date: string) => {
-            this.info.date = date;
-        });
     }
 }

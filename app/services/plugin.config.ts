@@ -16,7 +16,7 @@ export interface PluginOptions {
     time_format_moment_js: string;
     onTranslate?: (code:string, text: string) => any;
     translations: any[];
-    onDate?: (date: string, callback: any) => any;
+    onInit?: (callback: any) => any;
 }
 
 @Injectable()
@@ -35,7 +35,7 @@ export class PluginConfig {
     time_format_moment_js: string;
     onTranslate: (code:string, text: string) => any;
     translations: any[];
-    onDate: (date: string, callback: any) => any;
+    onInit: (callback: any) => any;
 
     constructor(options:PluginOptions) {
         this.templatesBaseUrl = options.templatesBaseUrl;
@@ -52,6 +52,6 @@ export class PluginConfig {
         this.time_format_moment_js = options.time_format_moment_js;
         this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
         this.translations = options.translations;
-        this.onDate = typeof options.onDate === 'function' ? options.onDate : () => {};
+        this.onInit = typeof options.onInit === 'function' ? options.onInit : () => {};
     }
 }

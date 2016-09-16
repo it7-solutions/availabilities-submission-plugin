@@ -6,9 +6,10 @@
         </td>
         <td class="inputTd">
             <div class="message-error" *ngIf="!validateFields.date.isValid">{{validateFields.date.messageText}}</div>
-            <input type="text" id="datepicker"
-                   [(ngModel)]="info.date" (click)="onShowDate()" readonly="true"
-                   [ngClass]="{'error': !validateFields.date.isValid, valid: validateFields.date.isValid}">
+            <input type="text"
+                   [(ngModel)]="info.date" readonly="true"
+                   [ngClass]="{'error': !validateFields.date.isValid, valid: validateFields.date.isValid}"
+                   id="datepicker">
         </td>
     </tr>
     <tr>
@@ -19,7 +20,8 @@
             <div class="message-error" *ngIf="!validateFields.stime.isValid">{{validateFields.stime.messageText}}</div>
             <input type="text"
                    [(ngModel)]="info.stime"
-                   [ngClass]="{'error': !validateFields.stime.isValid, valid: validateFields.stime.isValid}">
+                   [ngClass]="{'error': !validateFields.stime.isValid, valid: validateFields.stime.isValid}"
+                   id="stime" #stime>
         </td>
     </tr>
     <tr>
@@ -30,7 +32,8 @@
             <div class="message-error" *ngIf="!validateFields.etime.isValid">{{validateFields.etime.messageText}}</div>
             <input type="text"
                    [(ngModel)]="info.etime"
-                   [ngClass]="{'error': !validateFields.etime.isValid, valid: validateFields.etime.isValid}">
+                   [ngClass]="{'error': !validateFields.etime.isValid, valid: validateFields.etime.isValid}"
+                   id="etime" #etime>
         </td>
     </tr>
     <tr>
