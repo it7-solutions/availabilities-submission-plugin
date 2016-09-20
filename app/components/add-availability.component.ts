@@ -155,10 +155,10 @@ export class AddAvailabilityComponent {
                 if (startStamp >= endStamp) {
                     if (field.etime_lower) {
                         field.isValid = false;
-                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Start time must be lower that End time!');
+                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Start time must be lower than End time!');
                     } else if (field.etime_greater) {
                         field.isValid = false;
-                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('End time must be greater that Start time!');
+                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('End time must be greater than Start time!');
                     }
                 }
             }
