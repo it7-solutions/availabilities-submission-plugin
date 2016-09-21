@@ -1,4 +1,4 @@
-<tr (click)="expandCollapseClick()" (click)="isCollapsed = !isCollapsed" [ngClass]="{isCollapsed: isCollapsed}">
+<tr (click)="expandCollapseClick()" (click)="isCollapsed = !isCollapsed" [ngClass]="{isCollapsed: isCollapsed && availability.description}">
     <td>{{availability.date}}</td>
     <td>{{availability.start_time}}</td>
     <td>{{availability.end_time}}</td>
@@ -8,7 +8,7 @@
         <div *ngIf="availability.isDeletable" class="isDeletable" (click)="onConfirmClickConfirm($event)"></div>
     </td>
 </tr>
-<tr *ngIf="availability._expanded">
+<tr *ngIf="availability._expanded && availability.description">
     <td colspan="6">{{availability.description}}</td>
 </tr>
 <style>

@@ -89,7 +89,7 @@ export class It7AjaxService {
                     'status': 'Available',
                     'session_name': 'Session Name 3',
                     'isDeletable': true,
-                    'description': 'Description 3'
+                    'description': ''
                 },
                 {
                     'id': 4,
