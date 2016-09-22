@@ -9,7 +9,7 @@
             <input type="text"
                    [(ngModel)]="info.date" readonly="true"
                    [ngClass]="{'error': !validateFields.date.isValid, valid: validateFields.date.isValid}"
-                   id="datepicker">
+                   id="datepicker" #datepicker>
         </td>
     </tr>
     <tr>

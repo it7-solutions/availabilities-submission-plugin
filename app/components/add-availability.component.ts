@@ -17,6 +17,7 @@ export class AddAvailabilityComponent {
     @Input() request: AddAvailability;
     @ViewChild('stime') startTimeInput: any;
     @ViewChild('etime') endTimeInput: any;
+    @ViewChild('datepicker') datepickerInput: any;
     sessionTypes: Select[];
     language: Select[];
     state: string;
@@ -228,12 +229,20 @@ export class AddAvailabilityComponent {
     }
 
     private addValuesFromInputs() {
+        this.info.date = this.datepickerInput.nativeElement.value;
         this.info.stime = this.startTimeInput.nativeElement.value;
         this.info.etime = this.endTimeInput.nativeElement.value;
     }
 
+    private clearValues() {
+        this.datepickerInput.nativeElement.value = '';
+        this.startTimeInput.nativeElement.value = '';
+        this.endTimeInput.nativeElement.value = '';
+    }
+
     addAvailability() {
         this.addValuesFromInputs();
+        this.clearValues();
         this.onValidateFields();
         console.log('form', this.formValid);
         if(this.checkValid()) {
