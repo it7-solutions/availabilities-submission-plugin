@@ -89,12 +89,12 @@ export class AddAvailabilityComponent {
         state: {
             isValid: true,
             messageText: '',
-            isRequired: true,
+            isRequired: false,
         },
         location: {
             isValid: true,
             messageText: '',
-            isRequired: true,
+            isRequired: false,
         },
         description: {
             isValid: true,
