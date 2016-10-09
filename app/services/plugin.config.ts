@@ -14,6 +14,7 @@ export interface PluginOptions {
     time_format: string;
     time_format_regex: string;
     time_format_moment_js: string;
+    error_message: string;
     onTranslate?: (code:string, text: string) => any;
     translations: any[];
     onInit?: (callback: any) => any;
@@ -33,6 +34,7 @@ export class PluginConfig {
     time_format: string;
     time_format_regex: string;
     time_format_moment_js: string;
+    error_message: string;
     onTranslate: (code:string, text: string) => any;
     translations: any[];
     onInit: (callback: any) => any;
@@ -50,6 +52,7 @@ export class PluginConfig {
         this.time_format = options.time_format;
         this.time_format_regex = options.time_format_regex;
         this.time_format_moment_js = options.time_format_moment_js;
+        this.error_message = options.error_message;
         this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
         this.translations = options.translations;
         this.onInit = typeof options.onInit === 'function' ? options.onInit : () => {};

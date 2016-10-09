@@ -10,6 +10,7 @@ import {TranslationsService} from "../services/translations.service";
 import { PopupService } from '../services/popup.service';
 import { ConfirmPopupComponent } from './confirm-popup.component';
 import { BusyPopupComponent } from './busy-popup.component';
+import {ErrorMessageComponent} from "./error-message.component";
 @Component({
     selector: 'it7-availabilities-submission-plugin',
     templateUrl: 'app/templates/plugin.component.html',
@@ -17,7 +18,8 @@ import { BusyPopupComponent } from './busy-popup.component';
         AddAvailabilityComponent,
         MyAvailabilities,
         ConfirmPopupComponent,
-        BusyPopupComponent
+        BusyPopupComponent,
+        ErrorMessageComponent
     ],
     providers: [
         DataManagerService,
@@ -29,16 +31,26 @@ import { BusyPopupComponent } from './busy-popup.component';
     ]
 })
 export class PluginComponent implements OnInit{
+    error_message: string;
     constructor(
         private config: PluginConfig,
         private dataManager: DataManagerService
     ) {
         console.log(config);
+        this.error_message = this.config.error_message;
     }
 
     getItems() {
         //init plugin
         this.dataManager.initData();
+    }
+
+    checkForPluginSetup() { // check if all options exist
+        if(this.error_message === "" || this.error_message === null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     ngOnInit() {
