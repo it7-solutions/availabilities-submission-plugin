@@ -1,6 +1,6 @@
 <h1>Plugin Main View</h1>
 
-<table width="100%" *ngIf="checkForPluginSetup()">
+<table width="100%" *ngIf="!showMessageError()">
     <tr>
         <td width="49.5%" valign="top">
             <add-availability></add-availability>
@@ -11,6 +11,6 @@
         </td>
     </tr>
 </table>
-<error-message *ngIf="!checkForPluginSetup()"></error-message>
+<error-message *ngIf="showMessageError()"></error-message>
 <confirm-popup></confirm-popup>
 <busy-popup></busy-popup>

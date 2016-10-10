@@ -45,7 +45,7 @@ export class PluginComponent implements OnInit{
         this.dataManager.initData();
     }
 
-    checkForPluginSetup() { // check if all options exist
+    showMessageError() { // check if all options exist
         if(this.error_message === "" || this.error_message === null) {
             return false;
         } else {

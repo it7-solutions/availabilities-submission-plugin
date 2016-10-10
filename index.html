@@ -45,7 +45,7 @@
                         time_format: 'us', // us: 'us' eu: 'eu'
                         time_format_regex: '^(0[1-9]|1[0-2]):([0-5][0-9])(am|pm)$', //eu us:'^(0[1-9]|1[0-2]):([0-5][0-9])(am|pm)$' eu: '^([0-1][0-9]|2[0-3]):([0-4][0-9]|5[0-9])$
                         time_format_moment_js: 'MM/DD/YYYY hh:mm a', // eu: 'DD.MM.YYYY hh:mm a' us: 'MM/DD/YYYY hh:mm a'
-                        error_message: '',
+                        error_message: 'Plugin is not configured. Please specify date range in the BackOffice.',
                         onInit: function(){
                             $( "#datepicker" ).datepicker({
 //                                onSelect: function (date) {  //no need to use callback - manual data-binding
