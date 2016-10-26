@@ -21,12 +21,14 @@ export class DataManagerService {
     ){}
 
     initData(): Promise<any> {
+        console.log('initData');
         return this.it7Ajax
             .post(this.config.getListsUrl, {})
             .then(data => this.syncData(data));
     }
 
     private syncData(data: any){
+        console.log(data);
         this.availabilities.setAvailabilities(data.availabilities);
         this.hideLoading();
     }

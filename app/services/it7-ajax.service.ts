@@ -33,7 +33,7 @@ export class It7AjaxService {
         let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
         let options = new RequestOptions({ headers: headers });
 
-        if(this.config.mockAJAX){return Promise.resolve(this.getMockData(url));}
+        if(this.config.mockAJAX){return Promise.resolve(this.getMockData(url, data));}
         let here = this;
         return this.http
             .post(url, this.urlEncode(data), options)
@@ -65,7 +65,8 @@ export class It7AjaxService {
         return Promise.reject(error.message || error);
     }
 
-    private getMockData(mod: string = ''):any {
+    private getMockData(url: string, data: any = undefined):any {
+        console.log('getMockData', url, data);
         var m = {
             availabilities: [
                 {

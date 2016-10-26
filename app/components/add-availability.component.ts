@@ -6,8 +6,10 @@ import {DataManagerService} from "../services/data-manager.service";
 import {TranslationPipe} from "../pipes/translation.pipe";
 import {ValidateField} from "../models/validate";
 import {TranslationsService} from "../services/translations.service";
+import {UploadedResult} from '../models/upload-file-adaptor';
 import * as moment from 'moment';
-import any = jasmine.any;
+
+
 @Component({
     selector: 'add-availability',
     templateUrl: 'app/templates/add-availability.component.html',
@@ -22,6 +24,10 @@ export class AddAvailabilityComponent {
     language: Select[];
     state: string;
     formValid: boolean = true;
+    fileProgress:number = undefined;
+    fileError:string = '';
+
+
     constructor(
         private config: PluginConfig,
         private _dataManager: DataManagerService,
@@ -39,10 +45,12 @@ export class AddAvailabilityComponent {
         type_id: '',
         session_name: '',
         participants_number: null,
+        min_participants_number: null,
         language: '',
         state: '',
         location: '',
-        description: ''
+        description: '',
+        file: ''
     };
 
     validateFields: {[key:string] : ValidateField} = {
@@ -76,6 +84,12 @@ export class AddAvailabilityComponent {
             isRequired: true,
         },
         participants_number: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+            isNumber: true,
+        },
+        min_participants_number: {
             isValid: true,
             messageText: '',
             isRequired: true,
@@ -222,6 +236,15 @@ export class AddAvailabilityComponent {
         this.config.onInit((date: string) => {
             this.info.date = date;
         });
+
+        // Init fileUploader
+        if (this.config.uploader && 'function' === typeof this.config.uploader.onInit) {
+            this.config.uploader.onInit({
+                onProgress: (p: number) => this.onFileProgress(p),
+                onUploaded: (r: UploadedResult) => this.onFileUploaded(r),
+                onError: (r: UploadedResult) => this.onFileError(r)
+            });
+        }
     }
 
     fillForm(o: any) {
@@ -257,10 +280,42 @@ export class AddAvailabilityComponent {
                     type_id: '',
                     session_name: '',
                     participants_number: null,
+                    min_participants_number: null,
                     language: '',
-                    description: ''
+                    description: '',
+                    file: ''
                 }
             );
         }
+    }
+
+    // File upload field
+
+    private onFileProgress(progress: number): void {
+        this.info.file = '';
+        this.fileProgress = progress;
+        this.fileError = '';
+    }
+
+    private onFileUploaded(result: UploadedResult): void {
+        console.log('onFileUploaded', result);
+        if('ok' === result.status){
+            this.info.file = result.file;
+            this.fileProgress = undefined;
+            this.fileError = '';
+        }
+    }
+
+    private onFileError(result: UploadedResult): void {
+        console.log('onFileError', result);
+        this.info.file = '';
+        this.fileProgress = undefined;
+        this.fileError = result.msg || 'Unknown upload error';
+    }
+
+    // Call from Template
+    public onRemoveFileClick(): void {
+        this.info.file = '';
+        this.fileProgress = undefined;
     }
 }

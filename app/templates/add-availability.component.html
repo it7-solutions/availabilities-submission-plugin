@@ -73,6 +73,17 @@
     </tr>
     <tr>
         <td class="labelTd">
+            <label>Min Participants Number</label>
+        </td>
+        <td class="inputTd">
+            <div class="message-error" *ngIf="!validateFields.min_participants_number.isValid">{{validateFields.min_participants_number.messageText}}</div>
+            <input type="text"
+                   [(ngModel)]="info.min_participants_number"
+                   [ngClass]="{'error': !validateFields.min_participants_number.isValid, valid: validateFields.min_participants_number.isValid}">
+        </td>
+    </tr>
+    <tr>
+        <td class="labelTd">
             <label>Language</label>
         </td>
         <td class="inputTd">
@@ -116,6 +127,21 @@
                    [(ngModel)]="info.description">
         </td>
     </tr>
+    <tr>
+        <td>
+            <labe>Upload</labe>
+        </td>
+        <td>
+            <div class="message-error" *ngIf="fileError">{{fileError}}</div>
+            <span *ngIf="!info.file"><a id="addRecipe">{{ 'Upload your recipe' | translation }}</a></span>
+            <span *ngIf="fileProgress">{{ fileProgress }}%</span>
+            <span *ngIf="info.file">
+                <a (click)="onRemoveFileClick()">{{ 'Remove your recipe' | translation }}</a>
+                <span style="width:250px;display: inline-block;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">{{ info.file }}</span>
+            </span>
+        </td>
+    </tr>
+
     <tr>
         <td colspan="2" align="right">
             <button type="submit" (click)="addAvailability()">add availability</button>

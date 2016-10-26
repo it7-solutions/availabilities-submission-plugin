@@ -5,8 +5,10 @@ export interface AddAvailability {
     type_id: string;
     session_name: string;
     participants_number: string;
+    min_participants_number: string;
     language: string;
     state: string;
     location: string;
     description: string;
+    file: string;
 }
