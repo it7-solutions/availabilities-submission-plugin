@@ -5,6 +5,8 @@ export interface ValidateField {
     isTime?: boolean,
     etime_lower?: boolean,
     etime_greater?: boolean,
-    isNumber?: boolean
+    isNumber?: boolean,
+    number_lower?: boolean,
+    number_greater?: boolean
 }
 

@@ -62,17 +62,6 @@
     </tr>
     <tr>
         <td class="labelTd">
-            <label>Participants Number</label>
-        </td>
-        <td class="inputTd">
-            <div class="message-error" *ngIf="!validateFields.participants_number.isValid">{{validateFields.participants_number.messageText}}</div>
-            <input type="text"
-                   [(ngModel)]="info.participants_number"
-                   [ngClass]="{'error': !validateFields.participants_number.isValid, valid: validateFields.participants_number.isValid}">
-        </td>
-    </tr>
-    <tr>
-        <td class="labelTd">
             <label>Min Participants Number</label>
         </td>
         <td class="inputTd">
@@ -80,6 +69,17 @@
             <input type="text"
                    [(ngModel)]="info.min_participants_number"
                    [ngClass]="{'error': !validateFields.min_participants_number.isValid, valid: validateFields.min_participants_number.isValid}">
+        </td>
+    </tr>
+    <tr>
+        <td class="labelTd">
+            <label>Max Participants Number</label>
+        </td>
+        <td class="inputTd">
+            <div class="message-error" *ngIf="!validateFields.participants_number.isValid">{{validateFields.participants_number.messageText}}</div>
+            <input type="text"
+                   [(ngModel)]="info.participants_number"
+                   [ngClass]="{'error': !validateFields.participants_number.isValid, valid: validateFields.participants_number.isValid}">
         </td>
     </tr>
     <tr>

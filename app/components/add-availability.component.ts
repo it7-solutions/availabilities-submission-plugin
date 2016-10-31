@@ -83,17 +83,19 @@ export class AddAvailabilityComponent {
             messageText: '',
             isRequired: true,
         },
-        participants_number: {
-            isValid: true,
-            messageText: '',
-            isRequired: true,
-            isNumber: true,
-        },
         min_participants_number: {
             isValid: true,
             messageText: '',
             isRequired: true,
             isNumber: true,
+            number_lower: true,
+        },
+        participants_number: {
+            isValid: true,
+            messageText: '',
+            isRequired: true,
+            isNumber: true,
+            number_greater: true,
         },
         language: {
             isValid: true,
@@ -132,7 +134,7 @@ export class AddAvailabilityComponent {
                 var value = this.info[fieldName];
                 if('' === value || value === null) {
                     field.isValid = false;
-                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Please fill in the form!');
+                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Please fill in the form');
                 }
             }
         }
@@ -170,10 +172,27 @@ export class AddAvailabilityComponent {
                 if (startStamp >= endStamp) {
                     if (field.etime_lower) {
                         field.isValid = false;
-                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Start time must be lower than End time!');
+                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Start time must be lower than End time');
                     } else if (field.etime_greater) {
                         field.isValid = false;
-                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('End time must be greater than Start time!');
+                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('End time must be greater than Start time');
+                    }
+                }
+            }
+        }
+    }
+
+    private checkMaxNumberGreaterThanMin() {
+        for (var fieldName in this.validateFields) {
+            var field = this.validateFields[fieldName];
+            if (field.isNumber) {
+                if (this.info.min_participants_number >= this.info.participants_number) {
+                    if (field.number_lower) {
+                        field.isValid = false;
+                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Min number must be lower than Max number');
+                    } else if(field.number_greater) {
+                        field.isValid = false;
+                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Max number must be greater than Min number');
                     }
                 }
             }
@@ -199,7 +218,7 @@ export class AddAvailabilityComponent {
                 var regExp = new RegExp('^[1-9][0-9]*$', 'i');
                 if(!regExp.test(value)) {
                     field.isValid = false;
-                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('The field must be a number!');
+                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('The field must be a number');
                 }
             }
         }
@@ -222,6 +241,7 @@ export class AddAvailabilityComponent {
         this.checkTime();
         this.checkEndTimeGreaterThanStart();
         this.isNumber();
+        this.checkMaxNumberGreaterThanMin();
 
         this.checkValid();
     }
