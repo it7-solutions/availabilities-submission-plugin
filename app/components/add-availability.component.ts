@@ -182,23 +182,24 @@ export class AddAvailabilityComponent {
         }
     }
 
-    // TODO fix validation method: checkMaxNumberGreaterThanMin
-    // private checkMaxNumberGreaterThanMin() {
-    //     for (var fieldName in this.validateFields) {
-    //         var field = this.validateFields[fieldName];
-    //         if (field.isNumber) {
-    //             if (this.info.min_participants_number >= this.info.participants_number) {
-    //                 if (field.number_lower) {
-    //                     field.isValid = false;
-    //                     field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Min number must be lower than Max number');
-    //                 } else if(field.number_greater) {
-    //                     field.isValid = false;
-    //                     field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Max number must be greater than Min number');
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    private checkMaxNumberGreaterThanMin() {
+        var minNumber = this.info.min_participants_number;
+        var maxNumber = this.info.participants_number;
+        for (var fieldName in this.validateFields) {
+            var field = this.validateFields[fieldName];
+            if (field.isNumber) {
+                if (Number(minNumber) > Number(maxNumber)) {
+                    if (field.number_lower) {
+                        field.isValid = false;
+                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Min number must be lower than Max number');
+                    } else if(field.number_greater) {
+                        field.isValid = false;
+                        field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Max number must be greater than Min number');
+                    }
+                }
+            }
+        }
+    }
 
     private convertDateToTimeStamp(time: any) {
         var date: string = '';
@@ -242,7 +243,7 @@ export class AddAvailabilityComponent {
         this.checkTime();
         this.checkEndTimeGreaterThanStart();
         this.isNumber();
-        // this.checkMaxNumberGreaterThanMin();
+        this.checkMaxNumberGreaterThanMin();
 
         this.checkValid();
     }
