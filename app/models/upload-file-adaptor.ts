@@ -12,4 +12,5 @@ export interface UploadedResult {
     status: string
     msg: string
     file: string
+    originalName?: string
 }

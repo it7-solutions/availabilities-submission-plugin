@@ -26,6 +26,7 @@ export class AddAvailabilityComponent {
     formValid: boolean = true;
     fileProgress:number = undefined;
     fileError:string = '';
+    fileName:string = '';
 
 
     constructor(
@@ -325,6 +326,7 @@ export class AddAvailabilityComponent {
             this.info.file = result.file;
             this.fileProgress = undefined;
             this.fileError = '';
+            this.fileName = result.originalName ? result.originalName : result.file;
         }
     }
 

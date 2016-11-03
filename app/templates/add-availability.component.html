@@ -137,7 +137,7 @@
             <span *ngIf="fileProgress">{{ fileProgress }}%</span>
             <span *ngIf="info.file">
                 <a (click)="onRemoveFileClick()">{{ 'Remove your recipe' | translation }}</a>
-                <span style="width:250px;display: inline-block;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">{{ info.file }}</span>
+                <span style="width:250px;display: inline-block;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">{{ fileName }}</span>
             </span>
         </td>
     </tr>
