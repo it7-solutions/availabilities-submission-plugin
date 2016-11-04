@@ -21,14 +21,14 @@ export class DataManagerService {
     ){}
 
     initData(): Promise<any> {
-        console.log('initData');
+        // console.log('initData');
         return this.it7Ajax
             .post(this.config.getListsUrl, {})
             .then(data => this.syncData(data));
     }
 
     private syncData(data: any){
-        console.log(data);
+        // console.log(data);
         this.availabilities.setAvailabilities(data.availabilities);
         this.hideLoading();
     }
@@ -36,7 +36,7 @@ export class DataManagerService {
     saveRequest(newAvailability: Object){
 
         newAvailability = JSON.stringify(newAvailability);
-        console.log('new data', newAvailability);
+        // console.log('new data', newAvailability);
         return this.it7Ajax
             .post(this.config.saveUrl, {newAvailability: newAvailability})
             .then(data => this.syncData(data));
@@ -50,7 +50,7 @@ export class DataManagerService {
     }
 
     private showLoading(){
-        console.log('show loading');
+        // console.log('show loading');
         this.popup = new BusyPopup();
         this.popupService.showPopup(this.popup);
     }

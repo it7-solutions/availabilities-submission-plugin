@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, enableProdMode} from "@angular/core";
 import {AddAvailabilityComponent} from "./add-availability.component";
 import {MyAvailabilities} from "./my-availabilities.component";
 import {PluginConfig} from "../services/plugin.config";
@@ -11,6 +11,7 @@ import { PopupService } from '../services/popup.service';
 import { ConfirmPopupComponent } from './confirm-popup.component';
 import { BusyPopupComponent } from './busy-popup.component';
 import {ErrorMessageComponent} from "./error-message.component";
+enableProdMode();
 @Component({
     selector: 'it7-availabilities-submission-plugin',
     templateUrl: 'app/templates/plugin.component.html',
@@ -36,7 +37,7 @@ export class PluginComponent implements OnInit{
         private config: PluginConfig,
         private dataManager: DataManagerService
     ) {
-        console.log(config);
+        // console.log(config);
         this.error_message = this.config.error_message;
     }
 

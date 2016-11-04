@@ -20,7 +20,7 @@ export class AvailabilitiesService {
         this.availabilities = this.syncExpanded(availabilities);
         this._onUpdate.next(this.availabilities);
 
-        console.log(availabilities);
+        // console.log(availabilities);
     }
 
     getAvailabilities(): Availability[] {

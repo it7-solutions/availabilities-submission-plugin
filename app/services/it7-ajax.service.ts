@@ -66,7 +66,7 @@ export class It7AjaxService {
     }
 
     private getMockData(url: string, data: any = undefined):any {
-        console.log('getMockData', url, data);
+        // console.log('getMockData', url, data);
         var m = {
             availabilities: [
                 {

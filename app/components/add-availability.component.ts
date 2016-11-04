@@ -288,11 +288,11 @@ export class AddAvailabilityComponent {
 
     addAvailability() {
         this.addValuesFromInputs();
-        this.clearValues();
         this.onValidateFields();
-        console.log('form', this.formValid);
+        // console.log('form', this.formValid);
         if(this.checkValid()) {
-            console.log('saving...');
+            this.clearValues();
+            // console.log('saving...');
             this._dataManager.saveRequest(this.info);
 
             this.fillForm(
@@ -321,7 +321,7 @@ export class AddAvailabilityComponent {
     }
 
     private onFileUploaded(result: UploadedResult): void {
-        console.log('onFileUploaded', result);
+        // console.log('onFileUploaded', result);
         if('ok' === result.status){
             this.info.file = result.file;
             this.fileProgress = undefined;
@@ -331,7 +331,7 @@ export class AddAvailabilityComponent {
     }
 
     private onFileError(result: UploadedResult): void {
-        console.log('onFileError', result);
+        // console.log('onFileError', result);
         this.info.file = '';
         this.fileProgress = undefined;
         this.fileError = result.msg || 'Unknown upload error';

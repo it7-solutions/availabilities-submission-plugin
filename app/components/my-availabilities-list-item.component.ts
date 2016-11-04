@@ -16,7 +16,7 @@ export class MyAvailabilitiesListItemComponent {
 
     deleteAvailability(event:any) {
         event.stopPropagation();
-        console.log('delete');
+        // console.log('delete');
         this._dataManager.deleteRequest(this.availability.id);
     }
 
